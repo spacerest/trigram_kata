@@ -11,17 +11,17 @@ let (:trigram){ Trigram.new }
 
   it 'returns a word when its the only option' do
     trigram.text_reader("hello my friend")
-    expect(trigram.text_emitter("hello my")).to eq "hello my friend"
+    expect(trigram.text_emitter("hello my", 1)).to eq "hello my friend"
   end 
 
   it 'uses subsequent two words to find a third' do
     trigram.text_reader("hello my friend you")
-    expect(trigram.text_emitter("hello my")).to eq "hello my friend you"
+    expect(trigram.text_emitter("hello my", 1)).to eq "hello my friend you"
   end 
 
   it 'uses subsequent two words to find a fourth' do
     trigram.text_reader("hello my friend you goof")
-    expect(trigram.text_emitter("hello my")).to eq "hello my friend you goof"
+    expect(trigram.text_emitter("hello my", 1)).to eq "hello my friend you goof"
   end
 
 end

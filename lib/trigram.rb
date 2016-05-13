@@ -24,13 +24,16 @@ class Trigram
     @dictionary[lookup_key][@random_value]
   end
 
-  def text_emitter(starter_words)
+  def text_emitter(starter_words, number_sentences)
     @dyn_reference_words = starter_words
+    @sentence_counter = 0
     @new_text = []
     @dyn_reference_words.split(" ").each { |i| @new_text << i }
     @new_text.each_index {|i|
-      if @dictionary.has_key?(@dyn_reference_words) 
-	@new_text << read_dictionary(@dyn_reference_words)
+      if @dictionary.has_key?(@dyn_reference_words) && @sentence_counter < number_sentences
+	@new_word = read_dictionary(@dyn_reference_words)
+	@new_word.split("")[-1].match(/\.\s|\?\s|\!\s/) != nil ? @sentence_counter += 1 : false
+	@new_text << @new_word
 	@dyn_reference_words = @new_text[i+1..i+2].join(" ")
       else
 	break
