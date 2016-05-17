@@ -32,9 +32,10 @@ class Trigram
     @new_text.each_index {|i|
       if @dictionary.has_key?(@dyn_reference_words) && @sentence_counter < number_sentences
 	@new_word = read_dictionary(@dyn_reference_words)
-	@new_word.split("")[-1].match(/\.\s|\?\s|\!\s/) != nil ? @sentence_counter += 1 : false
+	@new_word.split("")[-1].match(/\.|\?|\!/) != nil ? @sentence_counter += 1 : false
 	@new_text << @new_word
 	@dyn_reference_words = @new_text[i+1..i+2].join(" ")
+	puts "\n\n"
       else
 	break
       end

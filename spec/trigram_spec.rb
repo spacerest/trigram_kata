@@ -24,4 +24,10 @@ let (:trigram){ Trigram.new }
     expect(trigram.text_emitter("hello my", 1)).to eq "hello my friend you goof"
   end
 
+  it 'prints one sentence' do
+    trigram.text_reader("You are fun. I am too.")
+    expect(trigram.text_emitter("You are", 1)).to eq "You are fun."
+  end
+  
+
 end
